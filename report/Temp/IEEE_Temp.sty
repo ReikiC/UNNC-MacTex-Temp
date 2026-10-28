@@ -1,0 +1,19 @@
+% Reference settings IEEE
+\usepackage[style=ieee, backend=biber]{biblatex}
+\addbibresource{bibliography.bib} % Replace 'your_bibliography' with the name of your .bib file
+
+% Define the format for the reference section title
+\renewcommand{\bibfont}{\fontsize{12}{14}\selectfont}
+
+% Custom command to add a reference section
+\newcommand{\addrefstosection}{
+  \phantomsection % Ensure correct link placement in PDF
+  \addcontentsline{toc}{section}{References}
+}
+\newcommand{\printreferences}{
+    \clearpage
+    \section*{\fontsize{18pt}{20pt}\selectfont References}
+    \printbibliography[heading=none]
+}
+
+\bibliography{bibliography.bib}

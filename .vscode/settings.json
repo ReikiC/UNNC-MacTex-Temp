@@ -1,0 +1,52 @@
+{
+  // ── 默认：pdflatex 编译（英文定稿）──
+  // ── 备用：XeLaTeX（正文需要输出中文时）：
+  // ──   1) 注释掉下面 tools / recipes 两段，取消文件底部 xelatex 注释段；
+  // ──   2) 把 report/main.tex 顶部 magic comment 改为 % !TeX program = xelatex。
+  // ──   Temp/Report_Temp.sty 已做引擎自适应，XeLaTeX 下才加载 xeCJK，无需改 sty。
+  // ── 文献用 biblatex + biber，latexmk 会自动完成 pdflatex → biber → pdflatex × 2 ──
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk (pdflatex)",
+      "command": "/Library/TeX/texbin/latexmk",
+      "args": [
+        "-pdf",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-cd",
+        "%DOC%"
+      ],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin"
+      }
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    { "name": "latexmk (pdflatex)", "tools": ["latexmk (pdflatex)"] }
+  ],
+  "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false
+
+  // ── 备用：XeLaTeX（正文输出中文时取消下面两段注释）──
+  //
+  // "latex-workshop.latex.tools": [
+  //   {
+  //     "name": "latexmk (xelatex)",
+  //     "command": "/Library/TeX/texbin/latexmk",
+  //     "args": [
+  //       "-xelatex",
+  //       "-synctex=1",
+  //       "-interaction=nonstopmode",
+  //       "-file-line-error",
+  //       "-cd",
+  //       "%DOC%"
+  //     ],
+  //     "env": {
+  //       "PATH": "/Library/TeX/texbin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin"
+  //     }
+  //   }
+  // ],
+  // "latex-workshop.latex.recipes": [
+  //   { "name": "latexmk (xelatex)", "tools": ["latexmk (xelatex)"] }
+  // ]
+}

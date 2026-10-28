@@ -1,0 +1,68 @@
+% report_template.sty
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\usepackage{booktabs} % For better-looking tables
+\usepackage{multirow} % For multirow cells
+\usepackage{pgfgantt} % Need to add this package in the preamble
+\usepackage{pdflscape} % 用于页面旋转
+
+% Document class
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{report_template}[2024/04/10 Report Template]
+
+% Page layout
+\usepackage[a4paper, margin=2.5cm]{geometry}
+
+% Font settings
+\usepackage{times}
+\usepackage{sectsty}
+\allsectionsfont{\fontsize{10}{12}\selectfont}
+
+% Spacing settings
+\usepackage{setspace}
+\onehalfspacing
+
+% Title settings
+\usepackage{titling} % Import the titling package
+\pretitle{ % Define actions before the title
+    \center % Center the title
+    \bfseries % Bold font
+    \fontsize{18pt}{20pt}\selectfont % Font size and line spacing
+} % End of \pretitle
+\posttitle{ % Define actions after the title
+    \par % Start a new paragraph
+    \center % End of title centering
+    \vskip 0.5em % Vertical space after the title
+} % End of \posttitle
+
+% Section title settings
+\sectionfont{\fontsize{12}{14}\bfseries}
+
+% Paragraph settings
+\usepackage{indentfirst}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+\usepackage{hanging}
+
+% Package for Chinese support
+% 引擎自适应：仅 XeLaTeX 下加载 xeCJK（pdflatex 不支持该宏包）。
+% pdflatex 编译时自动跳过，源码中的中文注释不受影响；
+% 如需在正文输出中文，请改用 XeLaTeX 编译（见 .vscode/settings.json 备用配置）。
+\usepackage{iftex}
+\ifXeTeX
+    \usepackage{xeCJK}
+    %\setCJKmainfont{STSong}
+\fi
+
+% Other packages
+\usepackage{lipsum} % For generating dummy text. Remove this in your actual document.
+\usepackage{graphicx} % For including graphics
+
+% Sets the font size of the directory title
+\usepackage{titletoc}
+\renewcommand{\contentsname}{\fontsize{18pt}{20pt}\selectfont Contents}
+\titlecontents{section}[3em]{\bfseries\fontsize{12pt}{14pt}\selectfont}{\contentslabel{2.3em}}{}{\titlerule*[0.5pc]{.}\contentspage}
+\titlecontents{subsection}[4.5em]{\fontsize{10pt}{12pt}\selectfont}{\contentslabel{2.3em}}{}{\titlerule*[0.5pc]{.}\contentspage}
+\titlecontents{subsubsection}[6em]{\fontsize{8pt}{10pt}\selectfont}{\contentslabel{2.3em}}{}{\titlerule*[0.5pc]{.}\contentspage}

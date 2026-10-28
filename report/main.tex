@@ -1,0 +1,255 @@
+% !TeX program = pdflatex
+% !TeX encoding = UTF-8
+% !BIB program = biber
+% !TeX root = main.tex
+% 正文需要输出中文时：改用 XeLaTeX（本行改为 xelatex，并对调 .vscode/settings.json 中的注释）
+\documentclass{article}
+\usepackage{Temp/Report_Temp}
+
+% Choose the refer style here
+% \usepackage{Temp/Harvard_Temp}
+\usepackage{Temp/IEEE_Temp}
+
+\begin{document}
+
+\begin{titlepage} % The cover page, The only thing need to be change is the contents
+    \begin{center}
+        \thispagestyle{empty} % Clear the page numbers
+        \vspace*{-3cm}
+        \makebox[\textwidth]{\includegraphics[width=\paperwidth]{image/unnc_logo.jpg}}
+        \vspace{0.2cm} % the distance between the logo and the school name
+
+        {\bfseries\fontsize{18pt}{20pt}\selectfont [Your School / Department]}\\
+        \vspace{1.2cm}
+        % 可选行：实验室 / 研究中心，不需要就注释掉
+        % {\bfseries\fontsize{18pt}{20pt}\selectfont [Your Lab / Research Group]}\\
+        % \vspace{1.5cm}
+
+        {\bfseries\fontsize{18pt}{20pt}\selectfont [Report Type, e.g. PhD Progression Review Report]}\\
+        \vspace{1cm}
+        {\bfseries\fontsize{18pt}{20pt}\selectfont [Academic Year, e.g. Year 26/27]}\\
+        \vspace{2cm}
+
+
+        {\bfseries\fontsize{18pt}{20pt}\selectfont [First Line of Your Report Title]}\\
+        \vspace{0.8cm}
+        {\bfseries\fontsize{18pt}{20pt}\selectfont [Second Line of Your Report Title]}\\
+        \vspace{3cm}
+
+
+         \begin{flushleft}
+            \begin{tabular}{l l}
+                Candidate: & [Your Name]\\
+                Supervisor: & [Dr Supervisor Name] \\
+                Internal Assessor: & [Dr Internal Assessor] \\
+                Review Stage: & [e.g. Stage 1 (Year 1)] \\
+                Date: & [DD/MM/YYYY]\\
+            \end{tabular}
+        \end{flushleft}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+% ============ 1. 项目信息一览表：按实际情况替换方括号占位；非年审类报告可删减行 ============
+\section{Project Details}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{5cm}|p{9cm}|}
+\hline
+\textbf{Item} & \textbf{Details} \\
+\hline
+Candidate & [Your Name] \\
+\hline
+Student ID & [Your Student ID] \\
+\hline
+School / Department & [Your School / Department] \\
+\hline
+Programme & [e.g. PhD in Your Discipline] \\
+\hline
+Supervisor(s) & [Dr Supervisor Name] \\
+\hline
+Internal Assessor & [Dr Internal Assessor] \\
+\hline
+Date of First Registration & [MM/YYYY] \\
+\hline
+Review Stage & [e.g. Stage 1 (Year 1)] \\
+\hline
+Review Period & [MM/YYYY] -- [MM/YYYY] \\
+\hline
+\end{tabular}
+\caption{Project and Review Details}
+\label{tab:details}
+\end{table}
+
+\newpage
+% ============ 2. 研究项目概述：简要重述背景、目标与研究问题，并演示引用命令 ============
+\section{Summary of the Research Project}
+% 用 3-5 段简要重述：研究背景与动机、研究目标与核心问题、采用的方法路线
+This section briefly restates the research project as agreed with the supervisory team at registration. [Summarise the background and motivation of your project here; cite references as needed, e.g. a single citation \cite{examplebib} or multiple citations \cite{vaswani2017attention, lecun2015deep}.]
+
+The research addresses the following core questions: [List the refined research questions agreed with the supervisory team.]
+
+\newpage
+% ============ 3. 考察期内进展：对照原计划逐项说明 ============
+\section{Progress During the Review Period}
+
+\subsection{Research Progress and Milestones Achieved}
+% 对照原计划中的里程碑（如文献综述、系统建模、算法设计、实验平台等），逐项说明完成情况；可插入图表展示关键结果
+According to the original plan, the main milestones for this review period were: [list the milestones from your original plan, e.g. literature review, system modelling, preliminary algorithm design, simulation platform development]. [Describe the work completed against each milestone, highlight any deviations from the original plan and the reasons.]
+
+\subsection{Literature Review Conducted}
+% 总结本年度文献综述的范围、数量与结论（如已形成综述章节或报告，在此引用）
+[Summarise the scope and outcomes of the literature review conducted during the review period, e.g. number of papers surveyed, identified research gaps, and how these shape the ongoing work.]
+
+\subsection{Publications and Research Outputs}
+% 列出已发表 / 在投 / 在准备的论文、专利、会议报告；注意 \item 后的内容不要以方括号开头（会被当成自定义标签）
+\begin{itemize}
+    \item Published: [paper title, venue, year]
+    \item Under review: [paper title, venue, status]
+    \item In preparation: [paper title, target venue]
+    \item Conference presentations, patents or other outputs: [if any]
+\end{itemize}
+
+\subsection{Researcher Training and Professional Development}
+% RTP（Researcher Training Programme）等必修/选修培训的完成情况；对照学校的 mandatory training 要求
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{7cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Training Module / Activity} & \textbf{Status} & \textbf{Date} \\
+\hline
+[Module name, e.g. RTP: Research Ethics] & [Completed] & [MM/YYYY] \\
+\hline
+[Module name] & [In progress] & [MM/YYYY] \\
+\hline
+\end{tabular}
+\caption{Researcher Training and Professional Development}
+\label{tab:rtp}
+\end{table}
+
+\subsection{Supervision Meetings}
+% 说明与导师团队的定期会议满足最低次数要求，记录存于 supervision records
+[State that regular supervisory meetings have been held throughout the review period at the required frequency, e.g. meetings were held approximately every X weeks with records agreed and archived in the supervision records.]
+
+\newpage
+% ============ 4. 下一年度研究计划：任务表 + 甘特图 ============
+\section{Research Plan for the Coming Year}
+
+This section presents the research plan for the coming year, aligned with the overall project timeline.
+
+\subsection{Objectives and Tasks}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{1.5cm}|p{7cm}|p{5cm}|}
+\hline
+\textbf{Month} & \textbf{Main Tasks} & \textbf{Deliverables} \\
+\hline
+13-15 & [Task description, e.g. WP1] & [Expected deliverable] \\
+\hline
+16-18 & [Task description, e.g. WP2] & [Expected deliverable] \\
+\hline
+19-21 & [Task description] & [Expected deliverable] \\
+\hline
+22-23 & [Task description] & [Expected deliverable] \\
+\hline
+24 & [Annual summary and paper writing] & [Annual report and paper draft] \\
+\hline
+\end{tabular}
+\caption{Research Plan for the Coming Year}
+\label{tab:year2}
+\end{table}
+
+\subsection{Updated Gantt Chart}
+% 全项目 36 个月甘特图（按实际项目周期改 {1}{36} 与各条目的区间）；
+% 已完成的任务条加 progress=100 标注（可按实际进度改百分比），未完成任务不加 progress
+The updated Gantt chart of the whole project is listed as follows:
+\begin{landscape}
+\begin{figure}[htbp]
+\centering
+\begin{ganttchart}[
+    y unit title=0.5cm,
+    y unit chart=0.7cm,
+    vgrid,
+    title height=1,
+    bar/.style={fill=blue!50},
+    incomplete/.style={fill=green!50},
+    progress label text={},
+    bar height=0.7,
+    group right shift=0,
+    group top shift=0.7,
+    group height=.3,
+    group peaks width={0.2},
+    milestone right shift=0,
+    milestone top shift=0.7,
+    x unit=0.4cm, % 调整水平缩放以适应旋转后的页面
+    canvas/.style={draw=none},
+    bar label node/.style={align=right, anchor=east}
+    ]{1}{36}
+    \gantttitle{Research Plan Timeline (Months)}{36} \\
+    \gantttitlelist{1,...,36}{1} \\
+
+    \ganttgroup{First Year: [Overall Theme]}{1}{12} \\
+    \ganttbar[progress=100]{Task 1.1: [Short description]}{1}{2} \\
+    \ganttbar[progress=100]{Task 1.2: [Short description]}{3}{5} \\
+    \ganttbar[progress=100]{Task 1.3: [Short description]}{6}{8} \\
+    \ganttbar[progress=100]{Task 1.4: [Short description]}{9}{10} \\
+    \ganttbar[progress=100]{Task 1.5: [Short description]}{11}{12} \\
+
+    \ganttgroup{Second Year: [Overall Theme]}{13}{24} \\
+    \ganttbar{Task 2.1: [Short description]}{13}{15} \\
+    \ganttbar{Task 2.2: [Short description]}{16}{18} \\
+    \ganttbar{Task 2.3: [Short description]}{19}{21} \\
+    \ganttbar{Task 2.4: [Short description]}{22}{23} \\
+    \ganttbar{Task 2.5: [Short description]}{24}{24} \\
+
+    \ganttgroup{Third Year: [Overall Theme]}{25}{36} \\
+    \ganttbar{Task 3.1: [Short description]}{25}{27} \\
+    \ganttbar{Task 3.2: [Short description]}{28}{30} \\
+    \ganttbar{Task 3.3: [Short description]}{31}{33} \\
+    \ganttbar{Thesis writing and refinement}{34}{36}
+\end{ganttchart}
+\caption{Updated Project Gantt Chart}
+\label{fig:gantt}
+\end{figure}
+\end{landscape}
+
+\newpage
+% ============ 5. 论文完成计划：呼应官方“注册期内完成研究并提交论文”的要求 ============
+\section{Thesis Completion Plan}
+% 说明按 36 个月注册期完成实证研究、撰写并提交论文的整体安排（按实际项目周期调整）
+The thesis is planned to be completed and submitted within the registered period of study, with the key milestones as follows:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{9cm}|p{4cm}|}
+\hline
+\textbf{Milestone} & \textbf{Target Time} \\
+\hline
+Completion of empirical research & Month [30] \\
+\hline
+Full thesis draft completed & Month [33] \\
+\hline
+Thesis submission & Month [36] \\
+\hline
+Thesis examination (viva voce) & Month [40] \\
+\hline
+\end{tabular}
+\caption{Thesis Completion Plan}
+\label{tab:thesis}
+\end{table}
+
+\newpage
+% ============ 6. 问题与所需支持：官方流程要求如实说明困难和需要的帮助 ============
+\section{Issues, Challenges and Support Required}
+% 如实说明研究中遇到的困难（实验条件、算力、数据、进度等）以及需要学校/学院提供的支持；无重大问题也请写明
+[Describe any problems encountered during the review period and how they have been mitigated, any changes made to the original research plan, and any support required from the supervisory team or the School.]
+
+% Reference functions
+\addrefstosection
+\printreferences
+
+\end{document}
