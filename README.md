@@ -58,9 +58,9 @@ latexmk -pdf main.tex
 - 正文与表格统一放在 `main.tex`，图片放 `image/`
 - 源码中可直接写中文注释（两种引擎均支持）；正文要**输出**中文则需切换 XeLaTeX（见上文编译方式）
 - **文献样式二选一**：`main.tex` 开头 `\usepackage{Temp/IEEE_Temp}`（IEEE，默认）与 `\usepackage{Temp/Harvard_Temp}`（Harvard）对调注释即可，两者不可同时加载
-- 引用命令示例（条目键为 `examplebib`）：
-  - IEEE：`A citation command in IEEE.\cite{examplebib}`
-  - Harvard：括号引用 `\parencite{examplebib}`；行文引用 `As \textcite{examplebib} said \dots`；自动适配 `\autocite{examplebib}`
+- 引用命令示例（条目键为 `vaswani2017attention`，见 `report/bibliography.bib`）：
+  - IEEE：`A citation command in IEEE.\cite{vaswani2017attention}`
+  - Harvard：括号引用 `\parencite{vaswani2017attention}`；行文引用 `As \textcite{vaswani2017attention} said \dots`；自动适配 `\autocite{vaswani2017attention}`
 - 插图示例：
 
 ```latex

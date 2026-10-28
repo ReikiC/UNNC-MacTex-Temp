@@ -3,8 +3,20 @@
 % !BIB program = biber
 % !TeX root = main.tex
 % 正文需要输出中文时：改用 XeLaTeX（本行改为 xelatex，并对调 .vscode/settings.json 中的注释）
+%
+% 说明：本骨架是一份"正常的 Stage 1 进展报告"——按研究本身的逻辑组织章节，
+% 只在内容上自然覆盖官方 Stage 1 的六条标准（背景与批判性认识、研究方法、
+% 批判分析与贡献、学术交流、计划与风险、培训与发展），不另设评分对照表。
 \documentclass{article}
 \usepackage{Temp/Report_Temp}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{array}
+
+% 表格列：左对齐、不拉伸、避免难看的连字符断词
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
 % Choose the refer style here
 % \usepackage{Temp/Harvard_Temp}
@@ -20,29 +32,29 @@
         \vspace{0.2cm} % the distance between the logo and the school name
 
         {\bfseries\fontsize{18pt}{20pt}\selectfont [Your School / Department]}\\
+        \vspace{0.8cm}
+        {\bfseries\fontsize{16pt}{18pt}\selectfont [Your Lab / Research Group]}\\
         \vspace{1.2cm}
-        % 可选行：实验室 / 研究中心，不需要就注释掉
-        % {\bfseries\fontsize{18pt}{20pt}\selectfont [Your Lab / Research Group]}\\
-        % \vspace{1.5cm}
 
-        {\bfseries\fontsize{18pt}{20pt}\selectfont [Report Type, e.g. PhD Progression Review Report]}\\
-        \vspace{1cm}
-        {\bfseries\fontsize{18pt}{20pt}\selectfont [Academic Year, e.g. Year 26/27]}\\
-        \vspace{2cm}
-
+        {\bfseries\fontsize{18pt}{20pt}\selectfont PhD Progression Review Report}\\
+        \vspace{0.4cm}
+        {\bfseries\fontsize{15pt}{17pt}\selectfont Stage 1 --- Confirmation of PhD Registration}\\
+        \vspace{1.0cm}
+        {\bfseries\fontsize{15pt}{17pt}\selectfont Academic Year [20XX/XX]}\\
+        \vspace{2.0cm}
 
         {\bfseries\fontsize{18pt}{20pt}\selectfont [First Line of Your Report Title]}\\
         \vspace{0.8cm}
         {\bfseries\fontsize{18pt}{20pt}\selectfont [Second Line of Your Report Title]}\\
-        \vspace{3cm}
-
+        \vspace{2.8cm}
 
          \begin{flushleft}
             \begin{tabular}{l l}
                 Candidate: & [Your Name]\\
-                Supervisor: & [Dr Supervisor Name] \\
+                Student ID: & [Your Student ID]\\
+                Supervisor(s): & [Dr Supervisor Name] \\
                 Internal Assessor: & [Dr Internal Assessor] \\
-                Review Stage: & [e.g. Stage 1 (Year 1)] \\
+                Review Period: & [MM/YYYY] -- [MM/YYYY] \\
                 Date: & [DD/MM/YYYY]\\
             \end{tabular}
         \end{flushleft}
@@ -52,201 +64,468 @@
 \tableofcontents
 
 \newpage
-% ============ 1. 项目信息一览表：按实际情况替换方括号占位；非年审类报告可删减行 ============
-\section{Project Details}
+% ============ 摘要：一页以内，让评审人先知道"做了什么、做到哪、接下来怎么办" ============
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+This report reviews the first year of the doctoral project [short title of the project]. The
+work is motivated by [the practical or theoretical problem the project addresses] and aims to
+[the overall aim, in one sentence]. During the review period, [what has been done: e.g. the
+literature review, the system model, the experimental platform] has been completed, and
+[the main preliminary finding] has been obtained. The remaining work is organised into [number]
+work packages, leading to [the expected contribution] and to thesis submission in month
+[36]. The report also describes the training completed, the supervisory meetings held, and the
+difficulties encountered during the year.
+
+% ============ 1. 引言：背景、缺口、目标、范围 ============
+\section{Introduction}
+
+\subsection{Background and Motivation}
+% 对应 Stage 1 标准 1：对领域现有知识的理解、对当前问题的批判性认识、研究理据。
+The starting point of this project is [the technical or societal need that motivates the
+research]. Over the past decade, [the field] has developed rapidly: [the key advances], and
+[the enabling technologies] have made [what used to be impossible] feasible. In parallel, [the application domain] has placed new demands on
+[performance, cost, reliability, efficiency], and these demands are difficult to meet with
+existing solutions.
+
+[Name the current dominant approach] is the most widely adopted solution at present. It works
+well when [conditions], but its performance degrades sharply when [the conditions that do not
+hold in practice] \cite{vaswani2017attention}. This mismatch between the assumptions behind
+existing methods and the conditions found in real deployments is the practical problem that
+this project addresses.
+
+The motivation for the project is therefore twofold. From a research perspective, [the
+scientific question that remains open]. From an application perspective, [who would benefit
+and how]. Both perspectives shape the objectives set out in Section 1.3.
+
+\subsection{Research Gap}
+Despite the progress described above, three issues remain unresolved. First, [gap 1: what
+existing work does not model, measure or explain]. Second, [gap 2: the limitation that follows
+from the assumptions or the experimental conditions of previous studies]. Third, [gap 3: the
+absence of a method that connects the two]. These gaps are discussed in more detail in
+Section 2.3.
+
+The gap that this project targets is [the specific gap, stated in one sentence]. Closing it
+matters because [the consequence for theory or practice], and it is tractable because [the
+recent development that now makes it possible].
+
+\subsection{Aims, Research Questions and Objectives}
+% 目标、问题、任务三层要能互相对上：问题 -> 工作包 -> 交付物。
+The overall aim of the project is to [develop / derive / validate / quantify] [the object of
+the research] so that [the improvement or understanding that is sought].
+
+This aim is pursued through three research questions:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{RQ1.} [Question about the underlying mechanism, model or behaviour.]
+    \item \textbf{RQ2.} [Question about the method, algorithm or design.]
+    \item \textbf{RQ3.} [Question about validation, trade-offs or generalisation.]
+\end{enumerate}
+
+The questions translate into the following objectives, each associated with a work package:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{O1 (WP1).} [Objective, phrased with a verifiable verb, and the criterion by
+    which completion will be judged.]
+    \item \textbf{O2 (WP2).} [Objective and completion criterion.]
+    \item \textbf{O3 (WP3).} [Objective and completion criterion.]
+\end{enumerate}
+
+\subsection{Scope and Assumptions}
+The study is limited to [the operating conditions, the class of systems, the data available].
+It does not attempt to [what is deliberately excluded], because [the reason]. The plan rests on
+three assumptions: [assumption 1], [assumption 2] and [assumption 3]. If [assumption 2] does not
+hold, [the alternative route that would be taken]; this is reflected in the risk assessment in
+Section 5.3.
+
+\subsection{Report Structure}
+Section 2 reviews the literature and identifies the gap. Section 3 describes the methodology.
+Section 4 reports the work completed and the preliminary results. Section 5 sets out the plan
+for the remaining period, including the risk assessment and the thesis timetable. Section 6
+covers training, academic engagement and supervision, Section 7 discusses the difficulties
+encountered, and Section 8 concludes.
+
+% ============ 2. 文献综述：不只是罗列，要有评价和缺口 ============
+\section{Literature Review}
+
+\subsection{Theoretical Background}
+% 交代理解本研究所需的基础概念与模型，篇幅不宜长。
+[Introduce the concepts and models on which the project builds: the governing theory, the
+standard formulation, the metrics used in the field. Cite the foundational references.]
+
+\subsection{State of the Art}
+% 按主题组织，每个主题讲清"主流做法 + 达到的水平 + 遗留问题"。
+The literature relevant to this project falls into three strands. The first strand concerns
+[theme 1]. Representative work includes [author, year], who [approach and result], and
+[author, year], who [approach and result]. The second strand addresses [theme 2] through
+[methods], and has established [what is now well understood]. The third strand, closer to this
+project, combines [theme 1] and [theme 2] in order to [purpose]; examples include
+\cite{vaswani2017attention, lecun2015deep}.
+
+Across these strands, [the consensus that has been reached] is well supported. What remains
+less clear is [the point on which the strands disagree or fall silent].
+
+\subsection{Critical Assessment and Research Gap}
+% 这里是"批判性认识"的落点：评价证据强度，而不是复述结论。
+The existing evidence is uneven. Studies based on [method A] report [results], but they rely on
+[assumption] and rarely test [condition], so their conclusions may not transfer to [the setting
+of this project]. Studies based on [method B] avoid that assumption but pay for it with
+[limitation]. Only a small number of works consider both, and those that do
+[e.g. use a simplified model, or report a single operating point].
+
+This assessment points to the gap introduced in Section 1.2: [restate the gap in one sentence,
+now supported by the literature]. The project addresses it by [the specific angle], which
+distinguishes the present work from [the closest existing study].
+
+\subsection{Implications for This Project}
+The review has three consequences for the design of the study. It confirms that [design choice
+1] is appropriate; it suggests that [design choice 2] should be preferred over the alternatives;
+and it identifies [the benchmark or baseline] against which the results must be compared in
+order to be convincing.
+
+% ============ 3. 方法：设计、关键技术、数据与设备、局限 ============
+\section{Research Methodology}
+
+\subsection{Overall Research Design}
+% 说明"用什么证据回答哪个问题"，这是方法章的主线。
+The project follows a [theoretical / simulation-based / experimental / mixed] design, organised
+around the three work packages introduced in Section 1.3. WP1 addresses RQ1 by [approach] and
+produces [the model or dataset]. WP2 addresses RQ2 by [approach] and produces [the method or
+design]. WP3 addresses RQ3 by [approach] and produces [the validation evidence]. The logic is
+that [why this sequence of evidence is sufficient to answer the questions].
+
+\subsection{Key Methods and Techniques}
+% 对应标准 2：既要说清"用了哪些方法"，也要说清"为什么是这些方法、掌握到什么程度"。
+The methods listed in Table~\ref{tab:methods} form the technical core of the project. Each was
+selected after comparing it with the alternatives available in the literature; the third column
+records the reason for the choice, and the last column the current state of implementation.
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|p{5cm}|p{9cm}|}
-\hline
-\textbf{Item} & \textbf{Details} \\
-\hline
-Candidate & [Your Name] \\
-\hline
-Student ID & [Your Student ID] \\
-\hline
-School / Department & [Your School / Department] \\
-\hline
-Programme & [e.g. PhD in Your Discipline] \\
-\hline
-Supervisor(s) & [Dr Supervisor Name] \\
-\hline
-Internal Assessor & [Dr Internal Assessor] \\
-\hline
-Date of First Registration & [MM/YYYY] \\
-\hline
-Review Stage & [e.g. Stage 1 (Year 1)] \\
-\hline
-Review Period & [MM/YYYY] -- [MM/YYYY] \\
-\hline
-\end{tabular}
-\caption{Project and Review Details}
-\label{tab:details}
+\small
+\begin{tabularx}{\textwidth}{@{}L{3.7cm}Y L{4.4cm}@{}}
+\toprule
+\textbf{Method} & \textbf{ Role in the research} & \textbf{Rationale and current status} \\
+\midrule
+{}[System-level simulation] & [Answers RQ1 by predicting ... under conditions ...] & [Chosen over A and B because ...; model implemented and benchmarked against ...] \\
+\addlinespace
+{}[Convex optimisation] & [Answers RQ2 by determining ...] & [Handles the coupling between ...; formulation derived, solver tested] \\
+\addlinespace
+{}[Experimental validation] & [Answers RQ3 by measuring ...] & [Provides evidence that simulation cannot; rig commissioned, first data collected] \\
+\bottomrule
+\end{tabularx}
+\caption{Methods used in the project, their role and current status}
+\label{tab:methods}
 \end{table}
 
-\newpage
-% ============ 2. 研究项目概述：简要重述背景、目标与研究问题，并演示引用命令 ============
-\section{Summary of the Research Project}
-% 用 3-5 段简要重述：研究背景与动机、研究目标与核心问题、采用的方法路线
-This section briefly restates the research project as agreed with the supervisory team at registration. [Summarise the background and motivation of your project here; cite references as needed, e.g. a single citation \cite{examplebib} or multiple citations \cite{vaswani2017attention, lecun2015deep}.]
+\subsection{Data, Equipment and Experimental Setup}
+% 数据从哪来、设备是什么、参数怎么定、如何保证可复现。
+[Describe the data sources and their volume, the equipment and software used, the parameter
+ranges and how they were chosen, and the steps taken to make the work reproducible: version
+control, fixed random seeds, documented calibration procedures.]
 
-The research addresses the following core questions: [List the refined research questions agreed with the supervisory team.]
+\subsection{Validity, Reproducibility and Limitations}
+The main limitations of the methodology are [limitation 1], [limitation 2] and [limitation 3].
+The first is addressed by [mitigation]; the second by [mitigation]; the third is accepted,
+because [reason], and its effect on the conclusions is [bounded in this way]. Where a limitation
+could not be removed, the alternative approach that would be adopted is described in
+Section 5.3.
 
-\newpage
-% ============ 3. 考察期内进展：对照原计划逐项说明 ============
+% ============ 4. 已完成工作：对照原计划，讲清结果 ============
 \section{Progress During the Review Period}
 
-\subsection{Research Progress and Milestones Achieved}
-% 对照原计划中的里程碑（如文献综述、系统建模、算法设计、实验平台等），逐项说明完成情况；可插入图表展示关键结果
-According to the original plan, the main milestones for this review period were: [list the milestones from your original plan, e.g. literature review, system modelling, preliminary algorithm design, simulation platform development]. [Describe the work completed against each milestone, highlight any deviations from the original plan and the reasons.]
+\subsection{Work Completed}
+% 对照注册时商定的计划逐项说明；有偏差就解释，不要回避。
+The plan agreed with the supervisory team at registration set out five milestones for the first
+year. Table~\ref{tab:milestones} compares the plan with what has been achieved. Four of the five
+milestones have been met in full; the platform milestone has been met in part, for the reason
+explained in Section 4.2.
 
-\subsection{Literature Review Conducted}
-% 总结本年度文献综述的范围、数量与结论（如已形成综述章节或报告，在此引用）
-[Summarise the scope and outcomes of the literature review conducted during the review period, e.g. number of papers surveyed, identified research gaps, and how these shape the ongoing work.]
-
-\subsection{Publications and Research Outputs}
-% 列出已发表 / 在投 / 在准备的论文、专利、会议报告；注意 \item 后的内容不要以方括号开头（会被当成自定义标签）
-\begin{itemize}
-    \item Published: [paper title, venue, year]
-    \item Under review: [paper title, venue, status]
-    \item In preparation: [paper title, target venue]
-    \item Conference presentations, patents or other outputs: [if any]
-\end{itemize}
-
-\subsection{Researcher Training and Professional Development}
-% RTP（Researcher Training Programme）等必修/选修培训的完成情况；对照学校的 mandatory training 要求
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|p{7cm}|p{3cm}|p{3cm}|}
-\hline
-\textbf{Training Module / Activity} & \textbf{Status} & \textbf{Date} \\
-\hline
-[Module name, e.g. RTP: Research Ethics] & [Completed] & [MM/YYYY] \\
-\hline
-[Module name] & [In progress] & [MM/YYYY] \\
-\hline
-\end{tabular}
-\caption{Researcher Training and Professional Development}
-\label{tab:rtp}
+\small
+\begin{tabularx}{\textwidth}{@{}L{5.4cm}L{2.2cm}L{1.9cm}Y@{}}
+\toprule
+\textbf{Milestone} & \textbf{Planned} & \textbf{Status} & \textbf{Comment} \\
+\midrule
+Literature review & M1--M4 & Completed & [Number] papers reviewed; review chapter drafted \\
+\addlinespace
+Method selection and training & M3--M5 & Completed & [Method] selected and benchmarked \\
+\addlinespace
+Platform, rig or code base & M4--M8 & Partly completed & [What is working; what is outstanding] \\
+\addlinespace
+Preliminary results & M8--M11 & Completed & [Dataset of N cases; results in Section 4.2] \\
+\addlinespace
+First paper draft & M10--M12 & Completed & Draft submitted to supervisors in [month] \\
+\bottomrule
+\end{tabularx}
+\caption{Milestones planned at registration and their status}
+\label{tab:milestones}
 \end{table}
 
-\subsection{Supervision Meetings}
-% 说明与导师团队的定期会议满足最低次数要求，记录存于 supervision records
-[State that regular supervisory meetings have been held throughout the review period at the required frequency, e.g. meetings were held approximately every X weeks with records agreed and archived in the supervision records.]
+The work carried out in WP1 concentrated on [what was done], and produced [the output]. In WP2,
+[what was done] was implemented and tested against [the benchmark]. The platform work required
+more time than expected because [the technical reason], which is discussed further in
+Section 7.1.
 
-\newpage
-% ============ 4. 下一年度研究计划：任务表 + 甘特图 ============
-\section{Research Plan for the Coming Year}
+\subsection{Preliminary Results}
+% 放 1--2 张最能说明"进展是实的"的图，并给出解读，而不是只贴图。
+Figure~\ref{fig:result1} shows [what the figure shows]. [Describe the trend or comparison.] The
+result is consistent with [expectation from the literature], and it suggests that [the
+interpretation relevant to RQ1]. It also reveals [the unexpected feature], which will be
+examined in WP2.
 
-This section presents the research plan for the coming year, aligned with the overall project timeline.
+\begin{figure}[htbp]
+\centering
+% \includegraphics[width=0.75\textwidth]{image/result1.png}
+\fbox{\parbox[c][5cm][c]{0.75\textwidth}{\centering Placeholder for the first key result}}
+\caption{[Caption: what is plotted, under which conditions, and what the reader should notice.]}
+\label{fig:result1}
+\end{figure}
 
-\subsection{Objectives and Tasks}
+[If a second result is needed, present it in the same way: one paragraph of interpretation per
+figure, no more.]
+
+\subsection{Research Outputs}
+The following outputs have been produced during the review period:
+\begin{itemize}[leftmargin=*]
+    \item Published: [authors, title, venue, year, DOI]
+    \item Under review: [title, venue, submission date, status]
+    \item In preparation: [title, target venue, intended submission date]
+    \item Presentations and other outputs: [talks, posters, datasets, code, patents]
+\end{itemize}
+
+% ============ 5. 计划：路径、甘特图、风险、论文时间表 ============
+\section{Research Plan for the Remaining Period}
+
+\subsection{Work Packages and Timeline}
+% 计划要落到"时间 + 交付物"，并且和前面的 RQ/目标对得上。
+The remaining work is organised into three work packages. WP2 will [what will be done] and
+deliver [the deliverable] by month [18]. WP3 will [what will be done] and deliver [the
+deliverable] by month [28]. WP4 covers [integration, writing and revision] and leads to
+submission in month [36]. Table~\ref{tab:plan} gives the schedule for the next twelve months in
+more detail; the full project timeline is shown in Figure~\ref{fig:gantt}.
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|p{1.5cm}|p{7cm}|p{5cm}|}
-\hline
-\textbf{Month} & \textbf{Main Tasks} & \textbf{Deliverables} \\
-\hline
-13-15 & [Task description, e.g. WP1] & [Expected deliverable] \\
-\hline
-16-18 & [Task description, e.g. WP2] & [Expected deliverable] \\
-\hline
-19-21 & [Task description] & [Expected deliverable] \\
-\hline
-22-23 & [Task description] & [Expected deliverable] \\
-\hline
-24 & [Annual summary and paper writing] & [Annual report and paper draft] \\
-\hline
-\end{tabular}
-\caption{Research Plan for the Coming Year}
-\label{tab:year2}
+\small
+\begin{tabularx}{\textwidth}{@{}L{2.2cm}Y L{4.6cm}@{}}
+\toprule
+\textbf{Month} & \textbf{Activities} & \textbf{Output} \\
+\midrule
+13--15 & [WP2: formulation, implementation and testing] & [Working method and test results] \\
+\addlinespace
+16--18 & [WP2: parametric study and analysis] & [Dataset and analysis] \\
+\addlinespace
+19--21 & [WP3: experimental campaign] & [Measurements and validation report] \\
+\addlinespace
+22--24 & [WP3: comparison, paper writing, Stage 2 preparation] & [Journal draft and Stage 2 report] \\
+\bottomrule
+\end{tabularx}
+\caption{Plan for the next twelve months}
+\label{tab:plan}
 \end{table}
 
 \subsection{Updated Gantt Chart}
-% 全项目 36 个月甘特图（按实际项目周期改 {1}{36} 与各条目的区间）；
-% 已完成的任务条加 progress=100 标注（可按实际进度改百分比），未完成任务不加 progress
-The updated Gantt chart of the whole project is listed as follows:
+The Gantt chart in Figure~\ref{fig:gantt} shows the whole project. Completed tasks are shown in
+full; the red markers indicate the progression reviews at months 12, 24 and 30, and thesis
+submission at month 36.
 \begin{landscape}
 \begin{figure}[htbp]
 \centering
 \begin{ganttchart}[
-    y unit title=0.5cm,
-    y unit chart=0.7cm,
+    y unit title=0.45cm,
+    y unit chart=0.62cm,
     vgrid,
-    title height=1,
+    title height=0.9,
     bar/.style={fill=blue!50},
     incomplete/.style={fill=green!50},
+    milestone/.style={fill=red!70},
     progress label text={},
-    bar height=0.7,
+    bar height=0.62,
     group right shift=0,
     group top shift=0.7,
     group height=.3,
     group peaks width={0.2},
     milestone right shift=0,
     milestone top shift=0.7,
-    x unit=0.4cm, % 调整水平缩放以适应旋转后的页面
-    canvas/.style={draw=none},
-    bar label node/.style={align=right, anchor=east}
+    x unit=0.4cm,
+    canvas/.style={draw=none}
     ]{1}{36}
     \gantttitle{Research Plan Timeline (Months)}{36} \\
     \gantttitlelist{1,...,36}{1} \\
 
-    \ganttgroup{First Year: [Overall Theme]}{1}{12} \\
-    \ganttbar[progress=100]{Task 1.1: [Short description]}{1}{2} \\
-    \ganttbar[progress=100]{Task 1.2: [Short description]}{3}{5} \\
-    \ganttbar[progress=100]{Task 1.3: [Short description]}{6}{8} \\
-    \ganttbar[progress=100]{Task 1.4: [Short description]}{9}{10} \\
-    \ganttbar[progress=100]{Task 1.5: [Short description]}{11}{12} \\
+    \ganttgroup{Year 1: Foundations}{1}{12} \\
+    \ganttbar[progress=100]{Literature review}{1}{4} \\
+    \ganttbar[progress=100]{Method selection and training}{3}{5} \\
+    \ganttbar[progress=100]{Platform and code base}{4}{8} \\
+    \ganttbar[progress=100]{Preliminary results}{8}{11} \\
+    \ganttbar[progress=100]{Stage 1 report and review}{11}{12} \\
+    \ganttmilestone{Stage 1 review}{12} \\
 
-    \ganttgroup{Second Year: [Overall Theme]}{13}{24} \\
-    \ganttbar{Task 2.1: [Short description]}{13}{15} \\
-    \ganttbar{Task 2.2: [Short description]}{16}{18} \\
-    \ganttbar{Task 2.3: [Short description]}{19}{21} \\
-    \ganttbar{Task 2.4: [Short description]}{22}{23} \\
-    \ganttbar{Task 2.5: [Short description]}{24}{24} \\
+    \ganttgroup{Year 2: Core investigation}{13}{24} \\
+    \ganttbar{WP2: method development}{13}{18} \\
+    \ganttbar{WP2: parametric study}{18}{20} \\
+    \ganttbar{WP3: experimental campaign}{20}{23} \\
+    \ganttbar{Stage 2 report and review}{23}{24} \\
+    \ganttmilestone{Stage 2 review}{24} \\
 
-    \ganttgroup{Third Year: [Overall Theme]}{25}{36} \\
-    \ganttbar{Task 3.1: [Short description]}{25}{27} \\
-    \ganttbar{Task 3.2: [Short description]}{28}{30} \\
-    \ganttbar{Task 3.3: [Short description]}{31}{33} \\
-    \ganttbar{Thesis writing and refinement}{34}{36}
+    \ganttgroup{Year 3: Consolidation and thesis}{25}{36} \\
+    \ganttbar{WP4: integration and analysis}{25}{28} \\
+    \ganttbar{Thesis writing}{28}{35} \\
+    \ganttmilestone{Stage 3 review}{30} \\
+    \ganttbar{Final revision and submission}{35}{36} \\
+    \ganttmilestone{Thesis submission}{36}
 \end{ganttchart}
-\caption{Updated Project Gantt Chart}
+\caption{Updated project Gantt chart}
 \label{fig:gantt}
 \end{figure}
 \end{landscape}
 
-\newpage
-% ============ 5. 论文完成计划：呼应官方“注册期内完成研究并提交论文”的要求 ============
-\section{Thesis Completion Plan}
-% 说明按 36 个月注册期完成实证研究、撰写并提交论文的整体安排（按实际项目周期调整）
-The thesis is planned to be completed and submitted within the registered period of study, with the key milestones as follows:
+\subsection{Risks and Mitigation}
+% 每条风险配"触发条件"，否则 mitigation 只是口号。
+Four risks could affect the plan. They are listed in Table~\ref{tab:risk} together with the
+mitigation measures and the point at which each will be reviewed. The most serious is [risk 1],
+because [reason]; if it materialises, [the fallback].
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|p{9cm}|p{4cm}|}
-\hline
-\textbf{Milestone} & \textbf{Target Time} \\
-\hline
-Completion of empirical research & Month [30] \\
-\hline
-Full thesis draft completed & Month [33] \\
-\hline
+\small
+\begin{tabularx}{\textwidth}{@{}L{4.2cm}L{1.4cm}L{3.2cm}Y@{}}
+\toprule
+\textbf{Risk} & \textbf{Level} & \textbf{Mitigation} & \textbf{Contingency and trigger} \\
+\midrule
+{}[Experimental facility unavailable] & High & [Secure alternative access; validate simulation model] & [Simulation-only route if facility is not available by month 14] \\
+\addlinespace
+{}[Data collection slower than planned] & Medium & [Prioritise the most informative conditions; seek technical support] & [Reduce the parameter set if the campaign is not complete by month 22] \\
+\addlinespace
+{}[Key assumption fails] & Medium & [Test the assumption early in WP2] & [Adopt the alternative formulation; narrow the scope] \\
+\addlinespace
+{}[Researcher availability] & Low & [Document data and code continuously] & [Pause and resume work packages without loss of continuity] \\
+\bottomrule
+\end{tabularx}
+\caption{Risks, mitigation measures and contingency plans}
+\label{tab:risk}
+\end{table}
+
+\subsection{Thesis Completion Plan}
+The thesis will be written alongside the research rather than in a separate writing-up period,
+as required by the programme. Table~\ref{tab:thesis} sets out the milestones for completion and
+submission within the registered period.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}Y L{3.4cm}@{}}
+\toprule
+\textbf{Milestone} & \textbf{Target} \\
+\midrule
+Empirical work completed & Month [28] \\
+\addlinespace
+First full draft to supervisors & Month [32] \\
+\addlinespace
+Revised draft after feedback & Month [34] \\
+\addlinespace
 Thesis submission & Month [36] \\
-\hline
-Thesis examination (viva voce) & Month [40] \\
-\hline
-\end{tabular}
-\caption{Thesis Completion Plan}
+\addlinespace
+Viva voce examination & Month [40] \\
+\bottomrule
+\end{tabularx}
+\caption{Thesis completion plan}
 \label{tab:thesis}
 \end{table}
 
-\newpage
-% ============ 6. 问题与所需支持：官方流程要求如实说明困难和需要的帮助 ============
-\section{Issues, Challenges and Support Required}
-% 如实说明研究中遇到的困难（实验条件、算力、数据、进度等）以及需要学校/学院提供的支持；无重大问题也请写明
-[Describe any problems encountered during the review period and how they have been mitigated, any changes made to the original research plan, and any support required from the supervisory team or the School.]
+% ============ 6. 培训、交流与督导：标准 6 和 4 ============
+\section{Training, Supervision and Professional Development}
+
+\subsection{Researcher Training}
+% 必修培训要有完成证据（证书、成绩单存于督导记录系统）。
+The training activities completed or in progress during the review period are listed in
+Table~\ref{tab:training}. The mandatory elements required before confirmation of registration
+have been completed, and the certificates are held in the supervision records.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}Y L{3.0cm}L{2.2cm}@{}}
+\toprule
+\textbf{Activity} & \textbf{Provider} & \textbf{Date and status} \\
+\midrule
+{}[Research integrity and ethics] & [Provider] & [MM/YYYY; completed] \\
+\addlinespace
+{}[Health, safety and laboratory induction] & [Provider] & [MM/YYYY; completed] \\
+\addlinespace
+{}[Discipline-specific module] & [Provider] & [MM/YYYY; passed] \\
+\addlinespace
+{}[Technical or transferable skills course] & [Provider] & [MM/YYYY; in progress] \\
+\bottomrule
+\end{tabularx}
+\caption{Training activities during the review period}
+\label{tab:training}
+\end{table}
+
+\subsection{Academic Engagement and Communication}
+% 对应标准 4：向不同受众讲清自己的研究；同行活动与科普活动都算。
+Beyond formal training, I have taken part in [the weekly group meetings, the school seminar
+series, the reading group], and attended [number] seminars during the year. I presented
+[the work] at [the group seminar / the departmental poster session / the conference], adapting
+the level of detail to the audience: the group presentation focused on [the technical detail],
+whereas the poster and the three-minute presentation for [the wider audience] concentrated on
+[the problem and its significance]. A plain-language description of the project was also
+prepared for [the outreach event or the school newsletter].
+
+In the coming year I plan to present at [conference], and to submit [the first journal paper]
+by month [18].
+
+\subsection{Supervision and Research Environment}
+Supervisory meetings have been held [weekly / fortnightly / monthly], as required by the
+programme. Each meeting followed an agreed agenda covering progress against the plan, problems
+encountered, and the next steps; the notes were agreed with the supervisors and are held in the
+supervision records. In addition to the scheduled meetings, I had regular informal discussions
+with [the principal supervisor] on [the specific topic].
+
+The research environment is adequate for the planned work: [the laboratory, the computing
+facility, the software and the technical support] are available, and [the specific resource] was
+secured in [month]. The one environment-related risk is [the risk], which is included in
+Table~\ref{tab:risk}.
+
+% ============ 7. 困难与所需支持：如实写 ============
+\section{Challenges and Support Required}
+
+\subsection{Challenges Encountered}
+% 写清"困难、影响、已做的应对"，不必回避，也不要只写客观原因。
+The main difficulties encountered during the year were [challenge 1], [challenge 2] and
+[challenge 3]. [Challenge 1] delayed [the task] by [duration]; it was addressed by [action], at
+the cost of [consequence]. [Challenge 2] affected [the work], and was mitigated by [action].
+[Personal circumstances, if any, should be described here with their timing and effect, and
+whether an exceptional circumstances claim was submitted.]
+
+\subsection{Changes to the Plan}
+As a result of these difficulties, [the milestone] was moved from month [x] to month [y], and
+[the method or scope] was adjusted so that [the reason]. The revised plan in Section 5 already
+reflects these changes, and the remaining milestones are unaffected.
+
+\subsection{Support Required}
+The following support would help to deliver the revised plan:
+\begin{itemize}[leftmargin=*]
+    \item Access to [the test facility] for two weeks in month 15, requested from [the
+    laboratory manager].
+    \item A licence for [the optimisation toolbox], requested from [the school].
+    \item Travel funding for [the conference] in month 20.
+\end{itemize}
+
+% ============ 8. 结论 ============
+\section{Conclusion}
+
+This report has set out the background and rationale of the project, reviewed the literature
+and identified the gap, described the methodology, and reported the progress made during the
+first year. The main achievements are [the three achievements, in one sentence each]. The
+preliminary results support [the interpretation] and provide a basis for the work in WP2.
+
+The remaining work is organised into [number] work packages with defined deliverables, and the
+plan leads to thesis submission within the registered period. The main risks have been
+identified and mitigation measures are in place.
+
+On this basis, I consider that the Stage 1 requirements have been met, and I am submitting this
+report for confirmation of PhD registration.
 
 % Reference functions
 \addrefstosection
